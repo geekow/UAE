@@ -21,7 +21,7 @@ docker-compose up
 Add a user translation
 ------
 ```bash
-curl -X POST -i http://$HOSTNAME/add_user_trad_word --data '{
+curl -X POST -i http://$HOSTNAME/add_user_trad --data '{
   "arabic": $ARABIC_WORD,
   "english": $ENGLISH_WORD"
 }

@@ -34,10 +34,11 @@ def index():
     return 'Index Page'
 
 
-@app.route('/add_user_trad_word', methods=['POST'])
+@app.route('/add_user_trad', methods=['POST'])
 def user_trad():
     try:
-        content = request.get_json(force=True)
+        content = json.loads(request.data.decode('utf8'))
+        logger.warning('WTF')
         if 'arabic' not in content or 'english' not in content:
             return json.dumps({'status': 'error', 'message': 'Missing key(s) in JSON'})
         # Treating arabic collections
@@ -84,11 +85,12 @@ def ask_trad(language, word):
             MONGO_DB['TOTRADUCE'].insert_one({'word': word, 'traduce_in': language})
         return json.dumps({'status': 'error',
                            'message': 'We have no translation for {word} in {language} for the moment'
-                          .format(word=word, language=language)})
+                          .format(word=word, language=language)}, ensure_ascii=False).encode('utf8')
     # Now return most common translation
     word_counter = Counter(result['translations'])
     logger.info('Sending translation for %s in %s : %s', word, language, word_counter.most_common(1))
-    return json.dumps({'status': 'success', 'result': word_counter.most_common(1)[0]})
+    return json.dumps({'status': 'success', 'result': word_counter.most_common(1)[0]}, ensure_ascii=False
+                      ).encode('utf8')
 
 
 @app.route('/get_word_to_traduce/<language>')
@@ -101,7 +103,7 @@ def get_word_to_traduce(language):
         return json.dumps({'status': 'error', 'message': 'We have no word to translate in ' + str(language)})
     MONGO_DB['TOTRADUCE'].remove(result)
     logger.info('Sending %s to traduce in %s', result['word'], result['traduce_in'])
-    return json.dumps({'status': 'success', 'word': result['word']})
+    return json.dumps({'status': 'success', 'word': result['word']}, ensure_ascii=False).encode('utf8')
 
 
 @app.route('/about')
