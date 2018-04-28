@@ -97,8 +97,8 @@ def get_word_to_traduce(language):
     language = 'ARABIC' if language == 'ENGLISH' else 'ENGLISH'
     result = MONGO_DB['TOTRADUCE'].find_one({'traduce_in': language})
     if not result:
-        logger.warning('We habe no word to traduce in %s', language)
-        return json.dumps({'status': 'error', 'message': 'We have no word to traduce in ' + str(language)})
+        logger.warning('We have no word to traduce in %s', language)
+        return json.dumps({'status': 'error', 'message': 'We have no word to translate in ' + str(language)})
     MONGO_DB['TOTRADUCE'].remove(result)
     logger.info('Sending %s to traduce in %s', result['word'], result['traduce_in'])
     return json.dumps({'status': 'success', 'word': result['word']})
