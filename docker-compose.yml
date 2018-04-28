@@ -1,5 +1,13 @@
 version: '3.4'
 services:
+  mongo:
+    image: mongo:3.6.3
+    # UNCOMMENT TO ENABLE STORAGE OF DB IN HOST
+    # volumes:
+    #   - mongo:/data/db
+    expose:
+      - "27017"
+
   app:
     build:
       context: .
@@ -9,4 +17,5 @@ services:
       - "80:5000"
     volumes:
       - './logs:/app/logs'
-
+    links:
+      - mongo
