@@ -15,7 +15,7 @@ docker-compose up
 
 - On errors the api will respond a json like this:
 ```json
-{'status': 'error', 'message': $ERROR_MSG}
+{"status": "error", "message": $ERROR_MSG}
 ```
 
 Add a user translation
