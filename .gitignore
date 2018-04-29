@@ -1,5 +1,5 @@
 .idea
 *.egg-info
-logs/*.logs
+logs/*.logs*
 *.pyc
 __pycache__
