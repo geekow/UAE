@@ -54,4 +54,5 @@ curl -X GET -i http://$HOSTNAME/get_word_to_traduce/$LANGUAGETOTRADUCE
 
 - UAE Api xml content in the folder UAE
 
-- Translation are case sensitive for the moment
+- Smart contract model defined in file Contract.txt
+

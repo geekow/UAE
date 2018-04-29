@@ -1,0 +1,58 @@
+
+//Please understand this token cannot be used in the current state of art of the token this is a pretty quick exemple of what is possible.
+
+// Researcher buy the token to access the API
+// Peer buy and burn token when they correct or add content the dataset
+// Without governance the tokenomic will take the role 
+pragma solidity ^0.4.0;
+contract UAE {
+
+    mapping(address => uint256) balances;
+    address owner;
+    string public constant name = "translateDialToken";
+    string public constant symbol = "TDT";
+    uint256 public _totalSupply;
+    uint256 public exchangeRate;
+    
+    uint8 public constant decimals = 18;
+    
+    function UAE() public {
+        _totalSupply = 1000000; //Total supply available
+        exchangeRate = 5000; // 1USD 679;
+        balances[msg.sender] = 200000; // Gov get 20%
+        _totalSupply -= 200000;
+        owner = msg.sender;
+    }
+    
+    function totalSupply() public view returns (uint256) {
+        return _totalSupply;
+    }
+    
+    function balanceOf(address owner) public view returns (uint256) {
+        require(owner != address(0));
+        return balances[owner];
+    }
+    
+    function buyToken(uint256 quantity) {
+        if (quantity > 0 && quantity < _totalSupply) {
+            if (msg.value * exchangeRate <= quantity)
+            {
+                balances[msg.sender] = msg.value * exchangeRate;
+                _totalSupply -= msg.value * exchangeRate;
+ 
+            }
+        }
+    }
+    
+    function changeRate(uint256 rate) {
+        if (msg.sender == owner) {
+            exchangeRate = rate;
+        }
+    }
+    
+    function burnToken(uint256 quantity) public {
+        if (balances[msg.sender] == quantity) {
+            balances[msg.sender] -= quantity;
+        }
+    }
+}
