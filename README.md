@@ -1,5 +1,15 @@
 # UAE Challenge Repo
 
+We focused our project on data collection because we think that there are already great researchers who are working on AI algorithms to exploit such a Dataset.
+https://www.deepl.com/quality.html
+(Deepl is a startup that is using DeepLearning to do translation and as you can see on the link, it's the best translation service that exists on the world (Over 50% better than Google/Facebook Translate or othere solutions)
+
+This is the link of the smart contract we did on the Etherum Blockchain to give tokens to users:
+https://ropsten.etherscan.io/token/0xae59cb888413900fb688be4948f04ae03a0c7d5d
+(You have absolutely no obligation to use the blockchain our project could also work if we do it on a centralized based system.)
+
+UAE.pdf is the pitch presentation
+
 ### Requirements:
 
 - Docker
