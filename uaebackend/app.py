@@ -38,7 +38,6 @@ def index():
 def user_trad():
     try:
         content = json.loads(request.data.decode('utf8'))
-        logger.warning('WTF')
         if 'arabic' not in content or 'english' not in content:
             return json.dumps({'status': 'error', 'message': 'Missing key(s) in JSON'})
         # Treating arabic collections
